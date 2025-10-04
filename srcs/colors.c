@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 23:27:33 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/03 01:46:53 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 01:57:55 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,24 @@
 
 unsigned int	get_color(int n)
 {
-	int	r;
-	int	g;
-	int	b;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	double			t;
 
 	if (n == MAX_ITER)
-		return (0x000000);
-	r = (n % 256);
-	g = ((n * 2) % 256);
-	b = ((n * 3) % 256);
-	return ((unsigned int)(r << 16) | (g << 8) | b);
+		return (0xFF000000);  /* Black with full alpha */
+	
+	/* Advanced color mapping using smooth coloring */
+	t = (double)n / MAX_ITER;
+	t = sqrt(t);  /* Smooth the color transition */
+	
+	/* Create a psychedelic color palette */
+	r = (unsigned char)(255.0 * (0.5 + 0.5 * sin(3.0 * M_PI * t)));
+	g = (unsigned char)(255.0 * (0.5 + 0.5 * sin(3.0 * M_PI * (t + 0.33))));
+	b = (unsigned char)(255.0 * (0.5 + 0.5 * sin(3.0 * M_PI * (t + 0.67))));
+	
+	/* RGBA format for MLX42 */
+	return ((255 << 24) | (r << 16) | (g << 8) | b);
 }
+

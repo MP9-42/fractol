@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:35:47 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/03 01:51:45 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 00:29:25 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,26 @@ void	take_input(char **argv, int argc, t_data *data)
 	}
 	c_r = 0.0;
 	c_i = 0.0;
-	if (strcmp(argv[1], "julia"))
+	if (strcmp(argv[1], "julia") == 0)
 	{
+		if (argc != 4)
+		{
+			print_parameters();
+			free(data);
+			exit(1);
+		}
 		c_r = ft_atodub(argv[2]);
 		c_i = ft_atodub(argv[3]);
 		julia(data, JULIA, c_r, c_i);
 	}
-	else if (strcmp(argv[1], "mandelbrot"))
+	else if (strcmp(argv[1], "mandelbrot") == 0)
 		mbrot(data, MANDELBROT, c_r, c_i);
+	else
+	{
+		print_parameters();
+		free(data);
+		exit(1);
+	}
 }
 
 void	print_parameters(void)

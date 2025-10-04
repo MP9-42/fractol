@@ -1,7 +1,7 @@
 NAME = fractol
 OBJ_DIR = objs
 SRCFILES =	srcs/fractol.c srcs/parsing.c srcs/colors.c srcs/julia.c srcs/window.c \
-			srcs/rendering.c \
+			srcs/rendering.c srcs/mandelbrot.c \
 
 OBJS = $(SRCFILES:srcs/%.c=$(OBJ_DIR)/%.o)
 CC = cc
