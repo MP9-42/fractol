@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 21:11:08 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/16 21:29:53 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/16 22:09:03 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	parssing(int argc, char **argv, t_data *data)
 	}
 	else if (ft_strncmp(argv[1], "Mandelbrot", 11)
 		|| ft_strncmp(argv[1], "mandelbrot", 11))
-		mbrot();
+		mbrot(data);
 	else if (ft_stncmp(argv[1], "Julia", 6)
 		|| ft_strncmp(argv[1], "julia", 6))
-		julia();
+		julia(data, argv);
 	else
 	{
 		print_parameters();
