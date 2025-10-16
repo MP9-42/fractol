@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 18:56:28 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/02 19:19:03 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/13 15:39:50 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,26 @@ double	ft_atodub(char *str)
 			prepoc = prepoc * -1;
 		i++;
 	}
-	while (ft_isdigit(str[i]))
-	{
-		num = num * 10 + (str[i] - '0');
-		i++;
-	}
 	atodub_support(&str[i], &num, &pnum);
 	return (prepoc * num / pnum);
 }
 
 void	atodub_support(char *str, double *num, double *pnum)
 {
+	while (ft_isdigit(*str))
+	{
+		*num = *num * 10 + (*str - '0');
+		if (!ft_isdigit(*str))
+			return ;
+		str++;
+	}
 	if (*str == '.')
 		str++;
 	while (ft_isdigit(*str))
 	{
 		*num = *num * 10.0 + (*str - '0');
+		if (!ft_isdigit(*str))
+			return ;
 		*pnum *= 10.0;
 		str++;
 	}

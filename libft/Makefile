@@ -6,7 +6,7 @@
 #    By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/10 13:08:28 by MP9               #+#    #+#              #
-#    Updated: 2025/10/02 19:26:56 by MP9              ###   ########.fr        #
+#    Updated: 2025/10/13 15:17:32 by MP9              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 		ft_atoi.c ft_calloc.c ft_strdup.c ft_putnbr_fd.c ft_putendl_fd.c \
 		ft_putstr_fd.c ft_putchar_fd.c ft_striteri.c ft_strmapi.c ft_itoa.c \
 		ft_strtrim.c ft_split.c ft_strjoin.c ft_substr.c ft_sqrt.c ft_isspace.c\
-		ft_atodub.c \
+		ft_atodub.c ft_free_matrix.c \
 
 BONUSSRCS = ft_lstiter_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
 			ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstdelone_bonus.c \

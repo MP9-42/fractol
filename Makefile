@@ -1,14 +1,25 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/16 16:41:21 by MP9               #+#    #+#              #
+#    Updated: 2025/10/16 19:22:23 by MP9              ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fractol
 OBJ_DIR = objs
-SRCFILES =	srcs/fractol.c srcs/parsing.c srcs/colors.c srcs/julia.c srcs/window.c \
-			srcs/rendering.c srcs/mandelbrot.c \
+SRCFILES =	srcs/fractol.c \
 
 OBJS = $(SRCFILES:srcs/%.c=$(OBJ_DIR)/%.o)
 CC = cc
-CFLAGS = -O3 -funroll-loops -flto -ftree-vectorize \
+CFLAGS = -Ofast -funroll-loops -flto -ftree-vectorize \
 	-fomit-frame-pointer -finline-functions \
 	-Wall -Wextra -Werror -I./includes/ -I./libft/includes/ \
-	-pthread
+	-pthread 
 LDFLAGS := -ldl -lglfw -pthread -lm
 UNAME_S :=$(shell uname -s)
 

@@ -5,69 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 13:41:31 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/04 01:56:47 by MP9              ###   ########.fr       */
+/*   Created: 2025/10/16 16:47:27 by MP9               #+#    #+#             */
+/*   Updated: 2025/10/16 21:33:08 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-// void	fractol(t_data *data)
-// {
-	
-// }
-
-t_data	*get_struct(void)
+void	data_init(t_data *data)
 {
-	static t_data	*data;
-
-	if (!data)
+	data->image = ft_calloc(1, sizeof(t_image));
+	data->image->pixels = ft_calloc(1, sizeof(t_pixel));
+	if (!data->image || !data->image->pixels)
 	{
-		data = malloc(sizeof(t_data) * 1);
-		if (!data)
-			exit(ft_printf("Could not extract data\n"));
+		if (data->image)
+			free(data->image);
+		free(data);
+		exit(1);
 	}
-	data->mlx = NULL;
-	data->image = NULL;
-	data->zoom = 1.0;
-	data->center_x = 0.0;
-	data->center_y = 0.0;
-	data->c_r = 0.0;
-	data->c_i = 0.0;
-	return (data);
+}
+void	ft_hook(void *param)
+{
+	mlx_t	*mlx;
+
+	mlx = param;
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx);
 }
 
+void	fill_screen(t_data *data, t_pixel *pixels)
+{
+	pixels->coordinate_y = 0;
+	pixels->coordinate_x = 0;
+	data->image->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(data->mlx, data->image->img, pixels->coordinate_x, pixels->coordinate_y);
+	while (pixels->coordinate_y < HEIGHT)
+	{
+		pixels->coordinate_x = 0;
+		while (pixels->coordinate_x < WIDTH)
+		{
+			mlx_put_pixel(data->image->img, pixels->coordinate_x,
+				pixels->coordinate_y, 0xFF000000);
+			pixels->coordinate_x++;
+		}
+		pixels->coordinate_y++;
+	}
+}
 
-int	main(int argc, char **argv)
+int	main(/*int argc, char **argv*/)
 {
 	t_data	*data;
 
-	data = get_struct();
-
-	/* Initialize default values */
-
-
-	take_input(argv, argc, data);
-	if (!mlx_init_window(data))
-	{
-		free(data);
-		return (1);
-	}
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		exit(STDERR_FILENO);
+	data_init(data);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "fractol", false);
 	
-	/* Draw initial fractal */
-	draw_fractal(data);
-
-	/* Start the main loop */
+	fill_screen(data, data->image->pixels);
+	mlx_loop_hook(data->mlx, ft_hook, data->mlx);
 	mlx_loop(data->mlx);
-
-	/* Cleanup when loop ends */
-	if (data)
-	{
-		if (data->image)
-			mlx_delete_image(data->mlx, data->image);
-		if (data->mlx)
-			mlx_terminate(data->mlx);
-		free(data);
-	}
+	mlx_delete_image(data->mlx, data->image->img);
 	return (0);
 }
+

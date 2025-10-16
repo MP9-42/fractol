@@ -5,50 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/02 18:35:47 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/04 00:29:25 by MP9              ###   ########.fr       */
+/*   Created: 2025/10/16 21:11:08 by MP9               #+#    #+#             */
+/*   Updated: 2025/10/16 21:29:53 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	take_input(char **argv, int argc, t_data *data)
+int	parssing(int argc, char **argv, t_data *data)
 {
-	double	c_r;
-	double	c_i;
-
 	if (argc < 2 || argc > 4)
 	{
 		print_parameters();
-		free(data);
-		exit(1);
+		error_handle(data);
 	}
-	c_r = 0.0;
-	c_i = 0.0;
-	if (strcmp(argv[1], "julia") == 0)
-	{
-		if (argc != 4)
-		{
-			print_parameters();
-			free(data);
-			exit(1);
-		}
-		c_r = ft_atodub(argv[2]);
-		c_i = ft_atodub(argv[3]);
-		julia(data, JULIA, c_r, c_i);
-	}
-	else if (strcmp(argv[1], "mandelbrot") == 0)
-		mbrot(data, MANDELBROT, c_r, c_i);
+	else if (ft_strncmp(argv[1], "Mandelbrot", 11)
+		|| ft_strncmp(argv[1], "mandelbrot", 11))
+		mbrot();
+	else if (ft_stncmp(argv[1], "Julia", 6)
+		|| ft_strncmp(argv[1], "julia", 6))
+		julia();
 	else
 	{
 		print_parameters();
-		free(data);
-		exit(1);
+		error_handle(data);
 	}
 }
 
-void	print_parameters(void)
+void	error_handle(t_data *data)
 {
-	ft_printf("Example 1: ./fractol julia -0.5 0.256\n");
-	ft_printf("Example 2: ./fractol mandelbrot\n");
+	free(data->image);
+	free(data->image->pixels);
+	free(data);
+	exit(1);
+}
+
+void print_parameters(void)
+{
+	ft_printf("Usage:\n");
+	ft_printf("./fractol mandelbrot\n");
+	ft_printf("./fractol julia <real_part> <imaginary_part>\n");
 }

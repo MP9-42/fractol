@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 13:44:01 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/04 01:15:05 by MP9              ###   ########.fr       */
+/*   Created: 2025/10/13 15:05:21 by MP9               #+#    #+#             */
+/*   Updated: 2025/10/13 15:08:56 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "libft.h"
 
-void	julia(t_data *data, t_fractal type, double c_r, double c_i)
+void	ft_free_matrix(char **str)
 {
-	data->type = type;
-	data->center_x = 0.0;
-	data->center_y = 0.0;
-	data->zoom = 1.0;
-	data->c_r = c_r;
-	data->c_i = c_i;
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+		i++;
+	while (i != 0)
+	{
+		free(str[i]);
+		i--;
+	}
 }
