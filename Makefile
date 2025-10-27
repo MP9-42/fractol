@@ -6,14 +6,14 @@
 #    By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/16 16:41:21 by MP9               #+#    #+#              #
-#    Updated: 2025/10/22 22:32:57 by MP9              ###   ########.fr        #
+#    Updated: 2025/10/27 13:43:03 by MP9              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 OBJ_DIR = objs
 SRCFILES =	srcs/fractol.c srcs/colors.c srcs/mandelbrot.c srcs/math.c \
-			srcs/parsing.c \
+			srcs/parsing.c srcs/hooks.c \
 
 OBJS = $(SRCFILES:srcs/%.c=$(OBJ_DIR)/%.o)
 CC = cc

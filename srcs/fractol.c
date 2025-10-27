@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 16:47:27 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/22 23:11:35 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/24 14:57:50 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,11 @@ void	data_init(t_data *data)
 	data->image->zoom = 1.0;
 	data->input = NULL;
 	data->in_values = 0;
+	data->color_shift = 0;
+	data->image->center.imaginary = 0.0;
+	data->image->center.real = 0.0;
 	data->mlx = NULL;
 	data->pars = 0;
-}
-
-void	ft_hook(void *param)
-{
-	mlx_t	*mlx;
-
-	mlx = param;
-
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
 }
 
 void	start_screen(t_data *data, t_pixel *pixels)
@@ -59,9 +52,10 @@ int	main(int argc, char **argv)
 	start_screen(data, &data->image->pixel);
 	parssing(argc, argv, data);
 	rendering(data);
-	mlx_loop_hook(data->mlx, ft_hook, data->mlx);
+	mlx_loop_hook(data->mlx, &ft_hook, data);
+	mlx_scroll_hook(data->mlx, &scroll_hook, data);
 	mlx_loop(data->mlx);
 	mlx_delete_image(data->mlx, data->image->img);
+	mlx_terminate(data->mlx);
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 21:11:08 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/22 22:31:19 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/23 02:00:21 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	parssing(int argc, char **argv, t_data *data)
 void	rendering(t_data *data)
 {
 	if (data->pars == 1)
-		mbrot((data->image));
+		mbrot((data->image), data);
 	// else
 	// 	julia(data);
 }

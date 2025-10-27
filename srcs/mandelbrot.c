@@ -6,13 +6,13 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 22:09:49 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/22 23:37:30 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/24 15:00:00 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	mbrot(t_image *img)
+void	mbrot(t_image *img, t_data *data)
 {
 	t_color	color;
 	int		counter;
@@ -20,14 +20,14 @@ void	mbrot(t_image *img)
 	counter = 0;
 	img->pixel.coordinate_x = 0;
 	img->pixel.coordinate_y = 0;
-	while (img->pixel.coordinate_x < img->img->width)
+	while (img->pixel.coordinate_x < WIDTH)
 	{
 		img->pixel.coordinate_y = 0;
-		while (img->pixel.coordinate_y < img->img->height)
+		while (img->pixel.coordinate_y < HEIGHT)
 		{
-			set_point(&img->pixel, img->img, img->zoom);
+			set_point(&img->pixel, img, img->zoom);
 			counter = mbrot_iterations(img->pixel.complex_num);
-			color = assign_color(counter, img->pixel);
+			color = assign_color(counter, data);
 			mlx_put_pixel(img->img, img->pixel.coordinate_x,
 				img->pixel.coordinate_y, color.colors);
 			img->pixel.coordinate_y++;

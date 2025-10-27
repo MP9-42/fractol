@@ -6,18 +6,18 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 23:33:39 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/22 23:35:42 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/24 14:58:19 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	set_point(t_pixel *pixel, mlx_image_t *img, double zoom)
+void	set_point(t_pixel *pixel, t_image *img, double zoom)
 {
-	pixel->complex_num.real = ((-2) * zoom) + (4.0 * zoom)
-		* pixel->coordinate_x / (img->width - 1);
-	pixel->complex_num.imaginary = ((-2) * zoom) + (4.0 * zoom)
-		* pixel->coordinate_y / (img->height - 1);
+	pixel->complex_num.real = img->center.real - 2.0 * zoom + (4.0 * zoom)
+		* pixel->coordinate_x / (img->img->width - 1);
+	pixel->complex_num.imaginary = img->center.imaginary - 2.0 * zoom
+		+ (4.0 * zoom) * pixel->coordinate_y / (img->img->height - 1);
 }
 
 t_complex_num	z_sqrd(t_complex_num z)

@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 22:19:53 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/23 00:25:11 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/24 14:20:09 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	julia(t_image *img)
 		img->pixel.coordinate_y = 0;
 		while (img->pixel.coordinate_y < img->img->height)
 		{
-			set_point(&img->pixel, img->img, img->zoom);
+			set_point(&img->pixel, img->img, img->new_zoom);
 			counter = mbrot_iterations(img->pixel.complex_num);
 			color = assign_color(counter, img->pixel);
 			mlx_put_pixel(img->img, img->pixel.coordinate_x,
