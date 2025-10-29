@@ -25,7 +25,7 @@
 # define HEIGHT 400
 
 # define CONVERGENCE_RADIUS 2
-# define MAX_ITERATIONS 128
+# define MAX_ITERATIONS 350
 
 typedef union color_u
 {
@@ -91,13 +91,15 @@ void			set_point(t_pixel *pixel, t_image *img, double zoom);
 void			data_init(t_data *data);
 void			ft_hook(void *param);
 void			start_screen(t_data *data, t_pixel *pixels);
-t_color			near_colors(t_color color, t_pixel pixel);
-t_color			assign_color(int counter, t_data *data);
+void			near_colors(t_color *color, t_pixel pixel, float t);
 t_color			far_colors(t_color color, t_pixel pixel);
 void			rendering(t_data *data);
 void			scroll_hook(double xdelta, double ydelta, void *param);
 void			apply_zoom_at_mouse(t_data *data, double ydelta,
 					t_mouse *mouse);
-void		get_mouse_complex(t_data *data, t_mouse *mouse);
+void			assign_opaque(uint8_t *alpha, float t);
+void			get_mouse_complex(t_data *data, t_mouse *mouse);
+t_color			assign_color(int counter, t_data *data);
+void			colours(t_color *color, float t);
 
 #endif

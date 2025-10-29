@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-void	julia(t_image *img)
+void	julia(t_image *img, t_data *data)
 {
 	t_color	color;
 	int		counter;
@@ -25,9 +25,9 @@ void	julia(t_image *img)
 		img->pixel.coordinate_y = 0;
 		while (img->pixel.coordinate_y < img->img->height)
 		{
-			set_point(&img->pixel, img->img, img->new_zoom);
+			set_point(&img->pixel, img->img, img->zoom);
 			counter = mbrot_iterations(img->pixel.complex_num);
-			color = assign_color(counter, img->pixel);
+			color = assign_color(counter, img->pixel, data);
 			mlx_put_pixel(img->img, img->pixel.coordinate_x,
 				img->pixel.coordinate_y, color.colors);
 			img->pixel.coordinate_y++;

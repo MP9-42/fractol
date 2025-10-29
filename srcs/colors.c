@@ -27,64 +27,59 @@ t_color	assign_color(int counter, t_data *data)
 		return (color);
 	}
 	else
-		color.colors = t;
+	{
+		assign_opaque(&color.alpha, t);
+		colours(&color, t);
+	}
 	if (data->color_shift > 0)
-		color.colors <<= data->color_shift;
+		color.colors >>= data->color_shift;
 	return (color);
 }
 
-t_color	near_colors(t_color color, t_pixel pixel)
+void	colours(t_color *color, float t)
 {
-	color.alpha = 255;
-	if (pixel.coordinate_y <= 255)
-	{
-		color.blue = pixel.coordinate_y;
-		color.red = 255 - pixel.coordinate_y;
-	}
-	else if (pixel.coordinate_y <= 510 && pixel.coordinate_y > 255)
-	{
-		color.blue = 510 - pixel.coordinate_y;
-		color.green = pixel.coordinate_y - 255;
-	}
-	else if (pixel.coordinate_y <= 765 && pixel.coordinate_y > 510)
-	{
-		color.green = 765 - pixel.coordinate_y;
-		color.red = pixel.coordinate_y - 510;
-	}
-	else if (pixel.coordinate_y <= 1020 && pixel.coordinate_y > 765)
-	{
-		color.red = 1020 - pixel.coordinate_y;
-		color.blue = pixel.coordinate_y - 765;
-	}
-	else
-		color.blue = 1275 - pixel.coordinate_y;
-	return (color);
+	if (t < 0.0001)
+		color->green = 250;
+	else if (t < 0.0002)
+		color->green = 200;
+	else if (t < 0.0003)
+		color->green = 175;
+	else if (t < 0.0004)
+		color->green = 150;
+	else if (t < 0.0005)
+		color->green = 125;
+	else if (t < 0.0006)
+		color->blue = 150;
+	else if (t < 0.0007)
+		color->blue = 175;
+	else if (t < 0.0008)
+		color->blue = 200;
+	else if (t < 0.0009)
+		color->blue = 225;
+	else if (t < 0.5)
+		color->blue = 255;
 }
 
-t_color	far_colors(t_color color, t_pixel pixel)
+void	assign_opaque(uint8_t *alpha, float t)
 {
-	color.alpha = 125;
-	if (pixel.coordinate_y <= 255)
-	{
-		color.blue = pixel.coordinate_y;
-		color.red = 255 - pixel.coordinate_y;
-	}
-	else if (pixel.coordinate_y <= 510 && pixel.coordinate_y > 255)
-	{
-		color.blue = 510 - pixel.coordinate_y;
-		color.green = pixel.coordinate_y - 255;
-	}
-	else if (pixel.coordinate_y <= 765 && pixel.coordinate_y > 510)
-	{
-		color.green = 765 - pixel.coordinate_y;
-		color.red = pixel.coordinate_y - 510;
-	}
-	else if (pixel.coordinate_y <= 1020 && pixel.coordinate_y > 765)
-	{
-		color.red = 1020 - pixel.coordinate_y;
-		color.blue = pixel.coordinate_y - 765;
-	}
-	else
-		color.blue = 1275 - pixel.coordinate_y;
-	return (color);
+	if (t < 0.0001)
+		*alpha = 255 / 10;
+	else if (t < 0.00009)
+		*alpha = 255 / 9;
+	else if (t < 0.0002)
+		*alpha = 255 / 8;
+	else if (t < 0.0006)
+		*alpha = 255 / 7;
+	else if (t < 0.0008)
+		*alpha = 255 / 6;
+	else if (t < 0.003)
+		*alpha = 255 / 5;
+	else if (t < 0.007)
+		*alpha = 255 / 4;
+	else if (t < 0.04)
+		*alpha = 255 / 3;
+	else if (t < 0.09)
+		*alpha = 255 / 2;
+	else if (t < 0.5)
+		*alpha = 255;
 }
