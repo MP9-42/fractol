@@ -85,7 +85,7 @@ int				julia_iterations(t_pixel point, t_complex_num input_num);
 void			julia(t_image *img, t_data *data);
 void			parssing(int argc, char **argv, t_data *data);
 void			error_handle(t_data *data);
-void			print_parameters(void);
+void			print_parameters(t_data *data);
 double			calc_magnitude(t_complex_num c);
 t_complex_num	znc_add(t_complex_num z_sqrd, t_complex_num c);
 void			set_point(t_pixel *pixel, t_image *img, double zoom);
@@ -95,6 +95,7 @@ void			start_screen(t_data *data, t_pixel *pixels);
 void			near_colors(t_color *color, t_pixel pixel, float t);
 t_color			far_colors(t_color color, t_pixel pixel);
 void			rendering(t_data *data);
+void			input_check(t_data	*data, char **numbers);
 void			scroll_hook(double xdelta, double ydelta, void *param);
 void			apply_zoom_at_mouse(t_data *data, double ydelta,
 					t_mouse *mouse);

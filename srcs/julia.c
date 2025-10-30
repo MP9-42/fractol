@@ -55,3 +55,16 @@ int	julia_iterations(t_pixel point, t_complex_num input_num)
 	}
 	return (counter);
 }
+
+void	input_check(t_data	*data, char **numbers)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isdigit(numbers[1][i]) && ft_isdigit(numbers[2][i]))
+	{
+		if (!ft_isdigit(numbers[1][i]) && !ft_isdigit(numbers[2][i]))
+			error_handle(data);
+		i++;
+	}
+}

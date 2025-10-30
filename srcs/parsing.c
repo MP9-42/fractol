@@ -15,24 +15,26 @@
 void	parssing(int argc, char **argv, t_data *data)
 {
 	if (argc < 2 || argc > 4)
-	{
-		print_parameters();
-		error_handle(data);
-	}
+		print_parameters(data);
 	else if (ft_strncmp(argv[1], "Mandelbrot", 11) == 0
 		|| ft_strncmp(argv[1], "mandelbrot", 11) == 0)
-		data->pars = 1;
+	{
+		if (argc == 2)
+			data->pars = 1;
+		else
+			print_parameters(data);
+	}
 	else if (ft_strncmp(argv[1], "Julia", 6) == 0
 		|| ft_strncmp(argv[1], "julia", 6) == 0 || ft_strlen(argv[1]) > 11)
 	{
-		data->pars = 2;
+		if (argc == 2 || argc == 4)
+			data->pars = 2;
+		else
+			print_parameters(data);
 		input_take(&argv[1], data);
 	}
 	else
-	{
-		print_parameters();
-		error_handle(data);
-	}
+		print_parameters(data);
 }
 
 void	input_take(char **numbers, t_data *data)
@@ -40,18 +42,20 @@ void	input_take(char **numbers, t_data *data)
 	char	**matrix;
 
 	matrix = NULL;
-	if (ft_strlen(numbers[0]) > 6)
+	if (ft_strlen(numbers[0]) > 7)
 	{
 		matrix = ft_split(numbers[0], ' ');
 		data->input.real = ft_atodub(matrix[1]);
 		data->input.imaginary = ft_atodub(matrix[2]);
+		ft_free_matrix(matrix);
+		input_check(data, numbers);
 	}
 	else
 	{
+		input_check(data, numbers);
 		data->input.real = ft_atodub(numbers[1]);
 		data->input.imaginary = ft_atodub(numbers[2]);
 	}
-	ft_free_matrix(matrix);
 }
 
 void	error_handle(t_data *data)
@@ -61,9 +65,10 @@ void	error_handle(t_data *data)
 	exit(1);
 }
 
-void	print_parameters(void)
+void	print_parameters(t_data *data)
 {
 	ft_printf("Usage:\n");
 	ft_printf("./fractol mandelbrot\n");
 	ft_printf("./fractol julia <real_part> <imaginary_part>\n");
+	error_handle(data);
 }
