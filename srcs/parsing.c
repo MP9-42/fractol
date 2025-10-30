@@ -51,6 +51,7 @@ void	input_take(char **numbers, t_data *data)
 		data->input.real = ft_atodub(numbers[1]);
 		data->input.imaginary = ft_atodub(numbers[2]);
 	}
+	ft_free_matrix(matrix);
 }
 
 void	error_handle(t_data *data)
