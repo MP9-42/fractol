@@ -21,8 +21,8 @@
 # define JULIA 2
 # define MBROT 0
 
-# define WIDTH 600
-# define HEIGHT 400
+# define WIDTH 500
+# define HEIGHT 500
 
 # define CONVERGENCE_RADIUS 2
 # define MAX_ITERATIONS 350
@@ -74,14 +74,15 @@ typedef struct s_data
 	t_image			*image;
 	t_color			color;
 	int				pars;
-	char			**input;
+	t_complex_num	input;
 	int				color_shift;
-	double			in_values;
 }					t_data;
 
 t_complex_num	z_sqrd(t_complex_num z);
 void			mbrot(t_image *img, t_data *data);
 int				mbrot_iterations(t_complex_num c);
+int				julia_iterations(t_pixel point, t_complex_num input_num);
+void			julia(t_image *img, t_data *data);
 void			parssing(int argc, char **argv, t_data *data);
 void			error_handle(t_data *data);
 void			print_parameters(void);
@@ -100,6 +101,7 @@ void			apply_zoom_at_mouse(t_data *data, double ydelta,
 void			assign_opaque(uint8_t *alpha, float t);
 void			get_mouse_complex(t_data *data, t_mouse *mouse);
 t_color			assign_color(int counter, t_data *data);
+void			input_take(char **numbers, t_data *data);
 void			colours(t_color *color, float t);
 
 #endif

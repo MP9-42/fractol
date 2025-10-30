@@ -19,7 +19,6 @@ void	mbrot(t_image *img, t_data *data)
 
 	counter = 0;
 	img->pixel.coordinate_x = 0;
-	img->pixel.coordinate_y = 0;
 	while (img->pixel.coordinate_x < WIDTH)
 	{
 		img->pixel.coordinate_y = 0;

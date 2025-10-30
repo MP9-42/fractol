@@ -32,8 +32,6 @@ void	apply_zoom_at_mouse(t_data *data, double ydelta, t_mouse *mouse)
 {
 	double	old_zoom;
 	double	new_zoom;
-	double	w;
-	double	h;
 
 	old_zoom = data->image->zoom;
 	get_mouse_complex(data, mouse);
@@ -42,12 +40,10 @@ void	apply_zoom_at_mouse(t_data *data, double ydelta, t_mouse *mouse)
 	else if (ydelta < 0)
 		data->image->zoom *= 1.1;
 	new_zoom = data->image->zoom;
-	w = (double)data->image->img->width;
-	h = (double)data->image->img->height;
 	data->image->center.real = mouse->real + 2.0 * new_zoom
-		- (4.0 * new_zoom) * (double)mouse->x / (w - 1.0);
+		- (4.0 * new_zoom) * (double)mouse->x / (WIDTH - 1.0);
 	data->image->center.imaginary = mouse->imaginary + 2.0 * new_zoom
-		- (4.0 * new_zoom) * (double)mouse->y / (h - 1.0);
+		- (4.0 * new_zoom) * (double)mouse->y / (WIDTH - 1.0);
 }
 
 void	get_mouse_complex(t_data *data, t_mouse *mouse)

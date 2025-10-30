@@ -21,13 +21,21 @@ void	data_init(t_data *data)
 		exit(1);
 	}
 	data->image->zoom = 1.0;
-	data->input = NULL;
-	data->in_values = 0;
+	data->input.real = 0;
+	data->input.imaginary = 0;
 	data->color_shift = 0;
 	data->image->center.imaginary = 0.0;
 	data->image->center.real = 0.0;
 	data->mlx = NULL;
 	data->pars = 0;
+}
+
+void	rendering(t_data *data)
+{
+	if (data->pars == 1)
+		mbrot((data->image), data);
+	else
+		julia(data->image, data);
 }
 
 void	start_screen(t_data *data, t_pixel *pixels)
@@ -49,13 +57,14 @@ int	main(int argc, char **argv)
 		exit(STDERR_FILENO);
 	data_init(data);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "fractol", false);
-	start_screen(data, &data->image->pixel);
 	parssing(argc, argv, data);
+	start_screen(data, &data->image->pixel);
 	rendering(data);
 	mlx_loop_hook(data->mlx, &ft_hook, data);
 	mlx_scroll_hook(data->mlx, &scroll_hook, data);
 	mlx_loop(data->mlx);
 	mlx_delete_image(data->mlx, data->image->img);
 	mlx_terminate(data->mlx);
+	error_handle(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 13:40:20 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/02 19:54:08 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/18 17:59:36 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	ft_putfloat(double n, int precision)
 	int		counter;
 	int		i;
 
-	if (n < 0)
+	while (n < 0)
 	{
 		counter = ft_putchar('-');
-		n = -n;
+		n = n * (-1);
 	}
 	num = (int)n;
 	counter = counter + ft_putnbr(num);

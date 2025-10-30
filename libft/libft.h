@@ -36,7 +36,6 @@ int		ft_isprint(int c);
 int		ft_sqrt(int num);
 int		ft_atoi(const char *str);
 double	ft_atodub(char *str);
-void	atodub_support(char *str, double *num, double *pnum);
 int		ft_toupper(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_tolower(int c);

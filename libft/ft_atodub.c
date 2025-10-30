@@ -12,46 +12,48 @@
 
 #include "libft.h"
 
+static double	atodub_support(char *str, int *i)
+{
+	double	decimal;
+	double	result;
+
+	decimal = 0.1;
+	result = 0.0;
+	(*i)++;
+	while (ft_isdigit(str[*i]))
+	{
+		printf("%c\n", str[*i]);
+		result += (str[*i] - '0') * decimal;
+		decimal *= 0.1;
+		(*i)++;
+	}
+	return (result);
+}
+
 double	ft_atodub(char *str)
 {
 	double	num;
-	double	pnum;
 	int		prepoc;
 	int		i;
 
 	i = 0;
-	pnum = 1.0;
 	num = 0;
-	prepoc = 1;
+	prepoc = 0;
 	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
-			prepoc = prepoc * -1;
+			prepoc = -1;
 		i++;
 	}
-	atodub_support(&str[i], &num, &pnum);
-	return (prepoc * num / pnum);
-}
-
-void	atodub_support(char *str, double *num, double *pnum)
-{
-	while (ft_isdigit(*str))
+	while (ft_isdigit(str[i]))
 	{
-		*num = *num * 10 + (*str - '0');
-		if (!ft_isdigit(*str))
-			return ;
-		str++;
+		num = num * 10.0 + (str[i] - '0');
+		printf("%c\n", str[i]);
+		i++;
 	}
-	if (*str == '.')
-		str++;
-	while (ft_isdigit(*str))
-	{
-		*num = *num * 10.0 + (*str - '0');
-		if (!ft_isdigit(*str))
-			return ;
-		*pnum *= 10.0;
-		str++;
-	}
+	if (str[i] == '.')
+		num += atodub_support(str, &i);
+	return (prepoc * num);
 }

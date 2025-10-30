@@ -19,15 +19,14 @@ void	parssing(int argc, char **argv, t_data *data)
 		print_parameters();
 		error_handle(data);
 	}
-	else if (ft_strncmp(argv[1], "Mandelbrot", 11)
-		|| ft_strncmp(argv[1], "mandelbrot", 11))
+	else if (ft_strncmp(argv[1], "Mandelbrot", 11) == 0
+		|| ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 		data->pars = 1;
-	else if (ft_strncmp(argv[1], "Julia", 6)
-		|| ft_strncmp(argv[1], "julia", 6))
+	else if (ft_strncmp(argv[1], "Julia", 6) == 0
+		|| ft_strncmp(argv[1], "julia", 6) == 0 || ft_strlen(argv[1]) > 11)
 	{
 		data->pars = 2;
-		data->input[0] = argv[2];
-		data->input[1] = argv[3];
+		input_take(&argv[1], data);
 	}
 	else
 	{
@@ -36,12 +35,28 @@ void	parssing(int argc, char **argv, t_data *data)
 	}
 }
 
-void	rendering(t_data *data)
+void	input_take(char **numbers, t_data *data)
 {
-	if (data->pars == 1)
-		mbrot((data->image), data);
-	// else
-	// 	julia(data);
+	char	**matrix;
+
+	matrix = NULL;
+	if (ft_strlen(numbers[0]) > 6)
+	{
+		matrix = ft_split(numbers[0], ' ');
+		while (matrix)
+			printf("einzelner string: %s\n", *matrix++);
+		data->input.real = ft_atodub(matrix[1]);
+		data->input.imaginary = ft_atodub(matrix[2]);
+		printf("%f\n%f\n", data->input.real, data->input.imaginary);
+	}
+	else
+	{
+		data->input.real = ft_atodub(numbers[1]);
+		data->input.imaginary = ft_atodub(numbers[2]);
+		// printf("%f\n%f\n", ft_atodub(numbers[1]), ft_atodub(numbers[2]));
+	}
+	ft_free_matrix(matrix);
+
 }
 
 void	error_handle(t_data *data)

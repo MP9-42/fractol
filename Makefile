@@ -13,7 +13,7 @@
 NAME = fractol
 OBJ_DIR = objs
 SRCFILES =	srcs/fractol.c srcs/colors.c srcs/mandelbrot.c srcs/math.c \
-			srcs/parsing.c srcs/hooks.c \
+			srcs/parsing.c srcs/hooks.c srcs/julia.c \
 
 OBJS = $(SRCFILES:srcs/%.c=$(OBJ_DIR)/%.o)
 CC = cc
