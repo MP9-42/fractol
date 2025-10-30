@@ -32,32 +32,22 @@ t_color	assign_color(int counter, t_data *data)
 		colours(&color, t);
 	}
 	if (data->color_shift > 0)
-		color.colors >>= data->color_shift;
+		color.colors <<= 2;
 	return (color);
 }
 
 void	colours(t_color *color, float t)
 {
-	if (t < 0.0001)
-		color->green = 250;
-	else if (t < 0.0002)
-		color->green = 200;
-	else if (t < 0.0003)
-		color->green = 175;
-	else if (t < 0.0004)
-		color->green = 150;
-	else if (t < 0.0005)
-		color->green = 125;
-	else if (t < 0.0006)
-		color->blue = 150;
-	else if (t < 0.0007)
-		color->blue = 175;
-	else if (t < 0.0008)
-		color->blue = 200;
-	else if (t < 0.0009)
-		color->blue = 225;
-	else if (t < 0.5)
-		color->blue = 255;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+
+	r = (uint8_t)(255.0f * powf(t, 0.3f));
+	g = (uint8_t)(255.0f * powf(t, 0.6f));
+	b = (uint8_t)(255.0f * t);
+	color->red = r;
+	color->green = g;
+	color->blue = b;
 }
 
 void	assign_opaque(uint8_t *alpha, float t)

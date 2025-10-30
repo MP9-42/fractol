@@ -71,7 +71,7 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_C))
 	{
 		data->color_shift += 1;
-		if (data->color_shift > 3)
+		if (data->color_shift > 2)
 			data->color_shift = 0;
 		rendering(data);
 	}

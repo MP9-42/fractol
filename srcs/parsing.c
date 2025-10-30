@@ -43,20 +43,14 @@ void	input_take(char **numbers, t_data *data)
 	if (ft_strlen(numbers[0]) > 6)
 	{
 		matrix = ft_split(numbers[0], ' ');
-		while (matrix)
-			printf("einzelner string: %s\n", *matrix++);
 		data->input.real = ft_atodub(matrix[1]);
 		data->input.imaginary = ft_atodub(matrix[2]);
-		printf("%f\n%f\n", data->input.real, data->input.imaginary);
 	}
 	else
 	{
 		data->input.real = ft_atodub(numbers[1]);
 		data->input.imaginary = ft_atodub(numbers[2]);
-		// printf("%f\n%f\n", ft_atodub(numbers[1]), ft_atodub(numbers[2]));
 	}
-	ft_free_matrix(matrix);
-
 }
 
 void	error_handle(t_data *data)

@@ -16,12 +16,13 @@ void	ft_free_matrix(char **str)
 {
 	int	i;
 
+	if (str == NULL)
+		return ;
 	i = 0;
 	while (str[i] != NULL)
-		i++;
-	while (i != 0)
 	{
 		free(str[i]);
-		i--;
+		i++;
 	}
+	free(str);
 }

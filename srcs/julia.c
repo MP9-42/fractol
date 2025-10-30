@@ -14,8 +14,8 @@
 
 void	julia(t_image *img, t_data *data)
 {
-	t_color			color;
-	int				counter;
+	t_color	color;
+	int		counter;
 
 	counter = 0;
 	img->pixel.coordinate_x = 0;
@@ -44,10 +44,8 @@ int	julia_iterations(t_pixel point, t_complex_num input_num)
 
 	fz_result.real = point.complex_num.real;
 	fz_result.imaginary = point.complex_num.imaginary;
-	c.real = input_num.real;
-	c.imaginary = input_num.imaginary;
+	c = input_num;
 	counter = 0;
-	fz_result.imaginary = c.imaginary;
 	while (calc_magnitude(fz_result) < CONVERGENCE_RADIUS
 		&& counter < MAX_ITERATIONS)
 	{

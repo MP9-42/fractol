@@ -22,7 +22,6 @@ static double	atodub_support(char *str, int *i)
 	(*i)++;
 	while (ft_isdigit(str[*i]))
 	{
-		printf("%c\n", str[*i]);
 		result += (str[*i] - '0') * decimal;
 		decimal *= 0.1;
 		(*i)++;
@@ -38,7 +37,7 @@ double	ft_atodub(char *str)
 
 	i = 0;
 	num = 0;
-	prepoc = 0;
+	prepoc = 1;
 	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
@@ -50,7 +49,6 @@ double	ft_atodub(char *str)
 	while (ft_isdigit(str[i]))
 	{
 		num = num * 10.0 + (str[i] - '0');
-		printf("%c\n", str[i]);
 		i++;
 	}
 	if (str[i] == '.')

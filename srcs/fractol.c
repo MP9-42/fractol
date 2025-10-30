@@ -57,8 +57,8 @@ int	main(int argc, char **argv)
 		exit(STDERR_FILENO);
 	data_init(data);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "fractol", false);
-	parssing(argc, argv, data);
 	start_screen(data, &data->image->pixel);
+	parssing(argc, argv, data);
 	rendering(data);
 	mlx_loop_hook(data->mlx, &ft_hook, data);
 	mlx_scroll_hook(data->mlx, &scroll_hook, data);
