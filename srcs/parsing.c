@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 21:11:08 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/23 02:00:21 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/31 04:12:47 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,16 @@ void	input_take(char **numbers, t_data *data)
 		matrix = ft_split(numbers[0], ' ');
 		data->input.real = ft_atodub(matrix[1]);
 		data->input.imaginary = ft_atodub(matrix[2]);
+		input_check(data, matrix[1]);
+		input_check(data, matrix[2]);
 		ft_free_matrix(matrix);
-		input_check(data, numbers);
 	}
 	else
 	{
-		input_check(data, numbers);
 		data->input.real = ft_atodub(numbers[1]);
 		data->input.imaginary = ft_atodub(numbers[2]);
+		input_check(data, numbers[1]);
+		input_check(data, numbers[2]);
 	}
 }
 
@@ -62,7 +64,7 @@ void	error_handle(t_data *data)
 {
 	free(data->image);
 	free(data);
-	exit(1);
+	exit(69);
 }
 
 void	print_parameters(t_data *data)

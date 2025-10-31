@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 16:46:48 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/27 13:49:47 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/31 04:11:19 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void			start_screen(t_data *data, t_pixel *pixels);
 void			near_colors(t_color *color, t_pixel pixel, float t);
 t_color			far_colors(t_color color, t_pixel pixel);
 void			rendering(t_data *data);
-void			input_check(t_data	*data, char **numbers);
+void			input_check(t_data	*data, char *numbers);
 void			scroll_hook(double xdelta, double ydelta, void *param);
 void			apply_zoom_at_mouse(t_data *data, double ydelta,
 					t_mouse *mouse);

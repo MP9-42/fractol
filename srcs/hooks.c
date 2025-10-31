@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 00:56:56 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/27 13:48:49 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/31 02:58:39 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 
 void	apply_zoom_at_mouse(t_data *data, double ydelta, t_mouse *mouse)
 {
-	double	old_zoom;
 	double	new_zoom;
 
-	old_zoom = data->image->zoom;
 	get_mouse_complex(data, mouse);
 	if (ydelta > 0)
 		data->image->zoom *= 0.9;

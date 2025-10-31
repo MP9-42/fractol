@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 22:19:53 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/24 14:20:09 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/31 04:14:58 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ int	julia_iterations(t_pixel point, t_complex_num input_num)
 	return (counter);
 }
 
-void	input_check(t_data	*data, char **numbers)
+void	input_check(t_data	*data, char *numbers)
 {
 	int	i;
 
 	i = 0;
-	while (ft_isdigit(numbers[1][i]) && ft_isdigit(numbers[2][i]))
+	while (numbers[i])
 	{
-		if (!ft_isdigit(numbers[1][i]) && !ft_isdigit(numbers[2][i]))
-			error_handle(data);
+		if (!ft_isdigit(numbers[i]) && numbers[0] != '-')
+			print_parameters(data);
 		i++;
 	}
 }
