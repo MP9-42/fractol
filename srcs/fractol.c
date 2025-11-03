@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 16:47:27 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/24 14:57:50 by MP9              ###   ########.fr       */
+/*   Updated: 2025/11/03 17:42:51 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	main(int argc, char **argv)
 	if (!data)
 		exit(STDERR_FILENO);
 	data_init(data);
+	parssing(argc, argv, data);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "fractol", false);
 	start_screen(data, &data->image->pixel);
-	parssing(argc, argv, data);
 	rendering(data);
 	mlx_loop_hook(data->mlx, &ft_hook, data);
 	mlx_scroll_hook(data->mlx, &scroll_hook, data);

@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 22:19:53 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/31 04:14:58 by MP9              ###   ########.fr       */
+/*   Updated: 2025/11/03 17:53:39 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	input_check(t_data	*data, char *numbers)
 	i = 0;
 	while (numbers[i])
 	{
-		if (!ft_isdigit(numbers[i]) && numbers[0] != '-')
+		if (numbers[i] == ',')
+			numbers[i] = '.';
+		if (!ft_isdigit(numbers[i]) && (numbers[i] != '-'
+			&& numbers[i] != '.' && numbers[i] != ','))
 			print_parameters(data);
 		i++;
 	}
